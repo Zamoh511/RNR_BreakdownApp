@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Table } from "react-bootstrap";
-import StudentTableRow from "./StudentTableRow";
+import breakdownTableRow from "./breakdownTableRow";
 
-const StudentList = () => {
-const [students, setStudents] = useState([]);
+const breakdownList = () => {
+const [breakdowns, setbreakdowns] = useState([]);
 
 useEffect(() => {
 	axios
 	.get("https://localhost:44377/api/Breakdown")
 	.then(({ data }) => {
-		setStudents(data);
+		setbreakdowns(data);
 	})
 	.catch((error) => {
 		console.log(error);
@@ -18,8 +18,8 @@ useEffect(() => {
 }, []);
 
 const DataTable = () => {
-	return students.map((res, i) => {
-	return <StudentTableRow obj={res} key={i} />;
+	return breakdowns.map((res, i) => {
+	return <breakdownTableRow obj={res} key={i} />;
 	});
 };
 
@@ -41,4 +41,4 @@ return (
 );
 };
 
-export default StudentList;
+export default breakdownList;
